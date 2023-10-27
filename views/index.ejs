@@ -483,7 +483,8 @@
   </header>
 
   <!-- ----------------------------------------------------------------- Youtube Downloader------------------------------------------------------------------->
-  <form action="/download" method="GET">
+  <!-- <form action="/download" method="GET"> -->
+  <form action="/videoviews" method="GET">
     <div class="section-container  text-align-center youtube-downloader py">
       <h1 class="title">Youtube Downloader</h1>
       <p>
@@ -491,7 +492,9 @@
       </p>
       <div class="row justify-content-center py mx">
         <div class="w-7 w-sm-1">
-          <input type="text" name="url" placeholder="Paste your Youtube link here" class="link-textbox" required />
+          <input type="text" id="url" name="videoUrl" placeholder="Paste your Youtube link here" class="link-textbox"
+            required />
+          <!-- <input type="text" name="url" placeholder="Paste your Youtube link here" class="link-textbox" required /> -->
         </div>
         <div class="w-33 w-sm-1 text-align-left download-btn" style="padding-left: 15px;">
           <button type="submit" class="submit-btn ">Download</button>
@@ -507,7 +510,7 @@
       </div>
     </div>
     <!-- ads code -->
-    <%- include('ads/native.js') -%>
+    <!-- <%- include('ads/native.js') -%> -->
       <!-- --------------------------------------------------------------Online YouTube-------------------------------------------------------------- -->
       <div class="section-container online-youtube py text-align-center faq">
         <h2 class="px-5 title">GenYouTube – Best Free Online YouTube
@@ -568,7 +571,7 @@
           works for computers, tablets and mobile devices. The videos are always converted in the highest
           available quality.
         </p>
-        <button type="submit " class="submit-btn">Download Now</button>
+        <!-- <button type="submit " class="submit-btn">Download Now</button> -->
       </div>
       <!-- ----------------------------------------------------------------Key Features---------------------------------------------------------------- -->
       <div class="py section-container text-align-center keyFeature faq">
@@ -747,7 +750,27 @@
       <p>© 2023 Youtube Video Downloader</p>
     </div>
   </footer>
+  <script>
+    const form = document.getElementById("downloadForm");
+    const loadingDiv = document.getElementById("loading");
 
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const url = form.url.value;
+      loadingDiv.style.display = "block";
+
+      try {
+        const response = await fetch(`/Videoviews?url=${encodeURIComponent(url)}`);
+        const data = await response.json();
+
+        loadingDiv.style.display = "none";
+      } catch (err) {
+        console.error("Error downloading MP3:", err);
+        // alert("Error occurred during download");
+        loadingDiv.style.display = "none";
+      }
+    });
+  </script>
 </body>
 
 </html>

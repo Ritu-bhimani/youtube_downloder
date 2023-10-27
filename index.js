@@ -48,6 +48,11 @@ app.get('/robots.txt', (req, res) => {
 app.get('/sitemap.xml', (req, res) => {
   res.render('sitemap');
 });
+
+app.get('/https://toursession.com', (req, res) => {
+  res.redirect("https://toursession.com/")
+})
+
 function convertToMP3(url) {
   const video = ytdl(url, { quality: "highestaudio" });
   video
@@ -88,6 +93,12 @@ app.get("/mp3", async (req, res) => {
 
 app.get("/linkedindownload", (req, res) => {
   res.render("linkedin");
+});
+
+app.get('/videodownload', (req, res) => {
+  console.log(req.query, "videoId")
+  const videoId = req.query; // Replace 'VIDEO_ID' with the actual video ID.
+  res.render('videodownloader', { videoId });
 });
 
 // youtube to mp3
@@ -153,9 +164,9 @@ app.get("/views", async (req, res) => {
     const scriptContent = $('script[type="application/ld+json"]').html();
     const jsonLdObject = JSON.parse(scriptContent);
 
+    console.log(jsonLdObject.sharedContent)
     // Extract the video URL and other relevant data
     const videoData = jsonLdObject.sharedContent.url;
-
     res.render("downloadlinkedin", { videoUrl: videoData, url: videoUrl });
   } catch (error) {
     console.error("Error:", error);
@@ -207,10 +218,98 @@ app.get("/downloadlinkedin", async (req, res) => {
   }
 });
 
+//Youtube video downloader ---------------------------------------------------------------------------------------------------------------------------------------------------
+app.get("/Videoviews", async (req, res) => {
+  try {
+    const { videoUrl } = req.query;
+    if (!videoUrl) {
+      return res.render("/", { videoUrl: null });
+    }
 
+    function getVideoIdFromUrl(url) {
+      const pattern1 = /(?:\?|&)v=([a-zA-Z0-9_-]+)/; // For "https://www.youtube.com/watch?v=VIDEO_ID"
+      const pattern2 = /youtu\.be\/([a-zA-Z0-9_-]+)/; // For "https://youtu.be/VIDEO_ID"
+      const pattern3 = /embed\/([a-zA-Z0-9_-]+)/;   // For "https://www.youtube.com/embed/VIDEO_ID"
+      const pattern4 = /shorts\/([a-zA-Z0-9_-]+)/; // For "https://www.youtube.com/shorts/VIDEO_ID"
+
+      const match1 = url.match(pattern1);
+      const match2 = url.match(pattern2);
+      const match3 = url.match(pattern3);
+      const match4 = url.match(pattern4);
+
+      if (match1) {
+        const videoId = match1[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+      } else if (match2) {
+        const videoId = match2[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+      } else if (match3) {
+        const videoId = match3[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+      else if (match4) {
+        const videoId = match4[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+      } else {
+        const urlParams = new URLSearchParams(new URL(url).search);
+        const videoId = urlParams.get("v");
+        if (videoId) {
+          return `https://www.youtube.com/embed/${videoId}`;
+        }
+      }
+      
+      // If the URL format is not recognized, return null or handle it as needed.
+      return null;
+    }
+    // Usage
+    const embedUrl = getVideoIdFromUrl(videoUrl);
+
+    const response = await axios.get(videoUrl);
+    const $ = cheerio.load(response.data);
+    const scriptContent = $('script[type="application/ld+json"]').html();
+
+    // Extract the video URL and other relevant data
+    res.render("videodownloader", { videoUrl: embedUrl, url: videoUrl });
+  } catch (error) {
+    console.error("Error:", error);
+    res.render("/", { videoUrl: null });
+  }
+});
+function sanitize(filename) {
+  return filename.replace(/[^a-z0-9]/gi, '_');
+}
+app.get("/downloadVideo", async (req, res) => {
+
+  try {
+    const { videoUrl } = req.query;
+    if (!videoUrl) {
+      return res.render("/", { videoUrl: null });
+    }
+
+    const info = await ytdl.getInfo(videoUrl);
+
+    // You can choose the format you want to download, for example:
+    const format = ytdl.chooseFormat(info.formats, { quality: "highest" });
+
+    if (format) {
+      const sanitizedFilename = sanitize(info.videoDetails.title);
+      res.header("Content-Disposition", `attachment; filename="${sanitizedFilename}.mp4"`);
+      ytdl(videoUrl, { format: format }).pipe(res);
+
+    } else {
+      res.render("videodownloader", { videoUrl: null });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    res.render("videodownloader", { videoUrl: null });
+  } finally {
+  }
+});
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 app.get("/download", async (req, res) => {
   const url = req.query.url;
-
   // Validate the URL
   if (ytdl(url)) {
     try {
