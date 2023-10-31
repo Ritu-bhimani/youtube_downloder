@@ -39,7 +39,7 @@
 </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8509471338094159"
         crossorigin="anonymous"></script>
-    <link rel="canonical" href="https://www.genyoutube.site/">
+    <link rel="canonical" href="https://genyoutube.site/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -128,7 +128,10 @@
             border-radius: 12px;
             padding: 15px 40px;
             font-weight: 600;
+            margin: 0 15px;
+            cursor: pointer;
             transition: all 0.3s linear;
+            cursor: pointer;
         }
 
         .submit-btn:hover {
@@ -553,38 +556,21 @@
                 </video>
                 </div>
                 <div class="flex justify-center">
-                    <button type="submit" style="
-                                  padding: 13px 25px;
-                                  border-radius: 8px;
-                                  font-size: 18px;
-                                  font-weight: 700;
-                                  color: #ffffff;
-                                  margin-top: 20px;
-                                  font-family: sans-serif;
-                                  background-color: #004182;
-                                  border: 1px solid #004182;
-                                  background-image: linear-gradient(315deg, #2a2a72 0%, #0b6092 74%);
-                                  cursor: pointer;
-                                  ">
+                    <button type="submit" class="submit-btn">
                         Download
                     </button>
-                    <button type="button" onclick="goBackAndReloadHomePage()" style="padding: 13px 25px;
-                                            border-radius: 8px;
-                                            font-size: 18px;
-                                            font-weight: 700;
-                                            color: #ffffff;
-                                            margin-top: 20px;
-                                            margin-left: 15px;
-                                            font-family: sans-serif;
-                                            background-color: #004182;
-                                            border: 1px solid #004182;
-                                            background-image: linear-gradient(315deg, #2a2a72 0%, #0b6092 74%);
-                                            cursor: pointer;">Go Back
-                    </button>
+                    <a href="/linkedindownload" class="submit-btn">Go Back</a>
                 </div>
                 <% } else { %>
-                    <p style="border: 1px solid; font-weight: bold;color: red; padding: 10px 10px;">Sorry, the provided
+                    <p
+                        style="border: 1px solid; font-weight: bold;color: red; padding: 25px ; font-size: 18px; margin-top: 18px;">
+                        Sorry,
+                        the provided
                         URL is not a valid Linkedin Video link.</p>
+                    <div style="margin-top: 12px;">
+                        <a href="/linkedindownload" class="submit-btn">Go
+                            Back</a>
+                    </div>
                     <% } %>
         </form>
 
@@ -603,23 +589,7 @@
             <p>© 2023 Youtube Video Downloader</p>
         </div>
     </footer>
-    <script>
-        // Handle browser back button click
-        function goBackAndReloadHomePage() {
-            // First, go back to the previous page in the history
-            window.history.back();
 
-            // After going back, check if the current page is the home page
-            if (window.location.pathname === 'linkedindownload') {
-                // If the current page is the home page, then reload it
-                window.location.reload();
-            } else {
-                // If the current page is not the home page, then navigate to the home page and reload it
-                window.location.href = 'linkedindownload';
-            }
-        }
-
-    </script>
 
 </body>
 

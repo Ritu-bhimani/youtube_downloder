@@ -44,7 +44,7 @@
 </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8509471338094159"
         crossorigin="anonymous"></script>
-    <link rel="canonical" href="https://www.genyoutube.site/">
+    <link rel="canonical" href="https://genyoutube.site/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -113,11 +113,11 @@
         }
 
         .py {
-            padding: 60px 0;
+            padding: 60px 0 !important;
         }
 
         .py-3 {
-            padding: 30px 0;
+            padding: 30px 0 !important;
         }
 
         .mx {
@@ -162,6 +162,7 @@
             padding: 15px 40px;
             font-weight: 600;
             margin: 0 15px;
+            cursor: pointer;
             transition: all 0.3s linear;
         }
 
@@ -484,6 +485,7 @@
                 </div>
             </div>
         </div>
+
         <div style="border-top: 1px solid #dfdfdf; padding: 32px 0px; ">
             <div class=" section-container d-flex justify-content-between mx text-align-center">
                 <a class="header-menu" href="/">Youtube Downloader</a>
@@ -499,7 +501,7 @@
     <!-- <%- include('ads/native.js') -%> -->
     <!--  ----------------------------------------------------------contant--------------------------------------------------- -->
     <section class="section-container py-3 online-youtube mx">
-        <h2 class="text-align-center">
+        <h2 class="text-align-center" style="font-size: 35px;">
             Download to video
         </h2>
         <p>Discover unlimited video download power with GеnYouTubе.Effectively taking away
@@ -531,7 +533,7 @@
                     <div id="loader"></div><span
                         style="padding-right: 10px; font-weight: bold; font-size: 20px; padding: 10px 0;"
                         id="pleaseWait">Please
-                        wait...
+                        wait
                         <span id="countdown"></span>
                     </span>
                 </div>
@@ -542,14 +544,18 @@
                             <button type="submit" class="submit-btn" id="redirectButton">
                                 Download
                             </button>
-                            <button type="button" onclick="goBackAndReloadHomePage()" class="submit-btn">Go Back
-                            </button>
+                            <a href="/" class="submit-btn">Go Back</a>
                         </div>
                     </div>
                 </div>
                 <% } else { %>
-                    <p style="border: 1px solid; font-weight: bold;color: red; padding: 10px 10px;">Sorry, the provided
+                    <p style="border: 1px solid; font-weight: bold;color: red; padding: 25px ; font-size: 18px;">Sorry,
+                        the provided
                         URL is not a valid YouTube video link.</p>
+                    <div style="margin-top: 12px;">
+                        <a href="/" class="submit-btn">Go
+                            Back</a>
+                    </div>
                     <% } %>
 
         </form>
@@ -586,23 +592,7 @@
             <p>© 2023 Youtube Video Downloader</p>
         </div>
     </footer>
-    <script>
-        // Handle browser back button click
-        function goBackAndReloadHomePage() {
-            // First, go back to the previous page in the history
-            window.history.back();
 
-            // After going back, check if the current page is the home page
-            if (window.location.pathname === '/') {
-                // If the current page is the home page, then reload it
-                window.location.reload();
-            } else {
-                // If the current page is not the home page, then navigate to the home page and reload it
-                window.location.href = '/';
-            }
-        }
-
-    </script>
     <script>
         // JavaScript to handle the loader and countdown
         document.addEventListener('DOMContentLoaded', () => {
@@ -617,11 +607,11 @@
 
             // Set a timeout to hide the loader and display the iframe after 10 seconds
             let secondsLeft = 10;
-            countdown.innerText = secondsLeft;
+            countdown.innerText = secondsLeft + " " + "seconds...";
 
             const countdownInterval = setInterval(() => {
                 secondsLeft -= 1;
-                countdown.innerText = secondsLeft;
+                countdown.innerText = secondsLeft + " " + "seconds...";
 
                 if (secondsLeft === 0) {
                     loader.style.display = 'none';

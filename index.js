@@ -14,19 +14,24 @@ app.use(express.static("public"));
 // Set up EJS as the view engine
 app.set("view engine", "ejs");
 
-// Define route for rendering the index page
+//======================================= Header Routes =======================================
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/contact", (req, res) => {
-  res.render("contact");
+app.get("/youtubetomp3", (req, res) => {
+  res.render("youtubetomp3");
 });
+
+app.get("/linkedindownload", (req, res) => {
+  res.render("linkedin");
+});
+
+//======================================= Footer Routes =======================================
 
 app.get("/privacy", (req, res) => {
   res.render("privacy");
 });
-
 app.get("/termsofservice", (req, res) => {
   res.render("termsofservice");
 });
@@ -35,180 +40,23 @@ app.get("/dmca", (req, res) => {
   res.render("dmca");
 });
 
-app.get("/youtubetomp3", (req, res) => {
-  res.render("youtubetomp3");
+app.get("/contact", (req, res) => {
+  res.render("contact");
 });
+
+//======================================= Robots.txt Route =======================================
+
 app.get("/robots.txt", (req, res) => {
   res.render("robots");
 });
+
+//======================================= Sitemap.xml Route =======================================
+
 app.get("/sitemap.xml", (req, res) => {
   res.render("sitemap");
 });
 
-app.get("/https://toursession.com", (req, res) => {
-  res.redirect("https://toursession.com/");
-});
-
-function convertToMP3(url) {
-  const video = ytdl(url, { quality: "highestaudio" });
-  video
-    .pipe(
-      ffmpeg()
-        .inputFormat("webm")
-        .outputOptions(["-f mp3", "-vn"])
-        .format("mp3")
-    )
-    .pipe(process.stdout);
-}
-
-app.get("/mp3", async (req, res) => {
-  var Url;
-  if (req.query.url.includes("=")) {
-    Url = req.query.url.split("=")[1];
-  } else {
-    Url = req.query.url;
-  }
-
-  const options = {
-    method: "get",
-    url: "https://youtube-mp36.p.rapidapi.com/dl",
-    params: { id: Url },
-    headers: {
-      "X-RapidAPI-Key": "b4c99f7d15msha19e50d9a13dd92p142d66jsn7b1f9c9951df",
-      "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
-    },
-  };
-  const response = await axios.request(options);
-  const data = response.data.link;
-  return res.send(JSON.stringify(data));
-});
-
-app.get("/linkedindownload", (req, res) => {
-  res.render("linkedin");
-});
-
-app.get("/videodownload", (req, res) => {
-  console.log(req.query, "videoId");
-  const videoId = req.query; // Replace 'VIDEO_ID' with the actual video ID.
-  res.render("videodownloader", { videoId });
-});
-app.get("/mp3download", (req, res) => {
-  console.log(req.query, "videoId");
-  const videoId = req.query; // Replace 'VIDEO_ID' with the actual video ID.
-  res.render("downloadmp3", { videoId });
-});
-
-// youtube to mp3
-app.get("/view", async (req, res) => {
-  console.log(" req.query.url", req.query.url);
-  const videoURL = req.query.url;
-  console.log("videoURL", videoURL);
-  res.render("downloadmp3", videoURL);
-});
-
-app.get("/videoInfo", async (req, res) => {
-  const videoURL = req.query.url;
-  try {
-    const info = await ytdl.getInfo(videoURL);
-    res.json(info);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch video info" });
-  }
-});
-
-app.get("/downloadmp3", async (req, res) => {
-  const videoURL = req.query.url;
-  try {
-    const info = await ytdl.getInfo(videoURL);
-    const title = info.videoDetails.title.replace(/[^\w\s]/gi, "");
-    const audioFormat = ytdl.chooseFormat(info.formats, {
-      filter: "audioonly",
-    });
-    res.header("Content-Disposition", `attachment; filename="${title}.mp3"`);
-    ytdl(videoURL, { format: audioFormat }).pipe(res);
-  } catch (err) {
-    res.status(500).send("Error occurred during download");
-  }
-});
-
-// Linkedin
-function getLinkedInPostId(url) {
-  try {
-    const urlObj = new URL(url);
-    const pathname = urlObj.pathname;
-    const postId = pathname.match(/\/([^/]+)\/?$/);
-    if (postId && postId.length > 1) {
-      return postId[1];
-    } else {
-      return null; // If the URL format is not recognized or doesn't contain a post ID
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    return null; // If the URL is invalid or any other error occurs
-  }
-}
-app.get("/views", async (req, res) => {
-  try {
-    const { videoUrl } = req.query;
-    if (!videoUrl) {
-      return res.render("linkedin", {
-        videoUrl: null,
-      });
-    }
-
-    const response = await axios.get(videoUrl);
-    const $ = cheerio.load(response.data);
-    const scriptContent = $('script[type="application/ld+json"]').html();
-
-    const jsonLdObject = JSON.parse(scriptContent);
-
-    const videoData = jsonLdObject?.sharedContent?.url; // Extract the video URL
-    res.render("downloadlinkedin", { videoUrl: videoData, url: videoUrl });
-  } catch (error) {
-    console.error("Error:", error);
-    res.render("linkedin", { message: "An error occurred." });
-  }
-});
-
-app.get("/downloadlinkedin", async (req, res) => {
-  try {
-    const { videoUrl } = req.query;
-    if (!videoUrl) {
-      return res.render("linkedin", { videoUrl: null });
-    }
-
-    const response = await axios.get(videoUrl);
-    const $ = cheerio.load(response.data);
-    const scriptContent = $('script[type="application/ld+json"]').html();
-    const jsonLdObject = JSON.parse(scriptContent);
-
-    const videoData = jsonLdObject.sharedContent;
-    const filePath = `${getLinkedInPostId(videoUrl)}.mp4`;
-
-    const videoStream = request.get(videoData);
-    const fileStream = fs.createWriteStream(filePath);
-
-    videoStream.pipe(fileStream);
-
-    fileStream.on("finish", () => {
-      res.download(filePath, filePath, (err) => {
-        if (err) {
-          console.error("Error:", err);
-          res.render("linkedin", { videoUrl: null });
-        }
-
-        fs.unlink(filePath, (err) => {
-          if (err) console.error("Error:", err);
-        });
-      });
-    });
-  } catch (error) {
-    console.error("Error:", error);
-    res.render("linkedin", { videoUrl: null });
-  }
-});
-
-//Youtube video downloader ---------------------------------------------------------------------------------------------------------------------------------------------------
+//======================================= Youtube Video Download =======================================
 app.get("/Videoviews", async (req, res) => {
   try {
     const { videoUrl } = req.query;
@@ -247,17 +95,14 @@ app.get("/Videoviews", async (req, res) => {
         }
       }
 
-      // If the URL format is not recognized, return null or handle it as needed.
       return null;
     }
-    // Usage
     const embedUrl = getVideoIdFromUrl(videoUrl);
 
     const response = await axios.get(videoUrl);
     const $ = cheerio.load(response.data);
     const scriptContent = $('script[type="application/ld+json"]').html();
 
-    // Extract the video URL and other relevant data
     res.render("videodownloader", { videoUrl: embedUrl, url: videoUrl });
   } catch (error) {
     console.error("Error:", error);
@@ -276,7 +121,6 @@ app.get("/downloadVideo", async (req, res) => {
 
     const info = await ytdl.getInfo(videoUrl);
 
-    // You can choose the format you want to download, for example:
     const format = ytdl.chooseFormat(info.formats, { quality: "highest" });
 
     if (format) {
@@ -295,8 +139,8 @@ app.get("/downloadVideo", async (req, res) => {
   } finally {
   }
 });
-// ---------------------------------------------------------------------------------------------------------------------------------------------------
-//mp3 video downloader ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+//======================================= Youtube To Mp3 Download =======================================
 app.get("/videotomp3", async (req, res) => {
   try {
     const { videoUrl } = req.query;
@@ -335,77 +179,137 @@ app.get("/videotomp3", async (req, res) => {
         }
       }
 
-      // If the URL format is not recognized, return null or handle it as needed.
       return null;
     }
-    // Usage
+
     const embedUrl = getVideoIdFromUrl(videoUrl);
 
     const response = await axios.get(videoUrl);
     const $ = cheerio.load(response.data);
     const scriptContent = $('script[type="application/ld+json"]').html();
 
-    // Extract the video URL and other relevant data
     res.render("downloadmp3", { videoUrl: embedUrl, url: videoUrl });
   } catch (error) {
     console.error("Error:", error);
     res.render("youtubetomp3", { videoUrl: null });
   }
 });
-function sanitize(filename) {
-  return filename.replace(/[^a-z0-9]/gi, "_");
-}
-app.get("/downloadVideotomp3", async (req, res) => {
+
+app.get("/mp3", async (req, res) => {
+  var Url;
+  if (req?.query?.url?.includes("=")) {
+    Url = req?.query?.url?.split("=")[1];
+  } else {
+    Url = req?.query?.url;
+  }
+
+  const options = {
+    method: "get",
+    url: "https://youtube-mp36.p.rapidapi.com/dl",
+    params: { id: Url },
+    headers: {
+      "X-RapidAPI-Key": "b4c99f7d15msha19e50d9a13dd92p142d66jsn7b1f9c9951df",
+      "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
+    },
+  };
+  const response = await axios.request(options);
+  const data = response.data.link;
+  return res.send(JSON.stringify(data));
+});
+
+//======================================= Linkedin Video Download =======================================
+
+app.get("/views", async (req, res) => {
   try {
     const { videoUrl } = req.query;
     if (!videoUrl) {
-      return res.render("youtubetomp3", { videoUrl: null });
+      return res.render("linkedin", {
+        videoUrl: null,
+      });
     }
 
-    const info = await ytdl.getInfo(videoUrl);
+    const response = await axios.get(videoUrl);
+    const htmlContent = response.data;
 
-    // You can choose the format you want to download, for example:
-    const format = ytdl.chooseFormat(info.formats, { quality: "highest" });
+    const scriptContent = htmlContent.match(
+      /<script type="application\/ld\+json">(.*?)<\/script>/s
+    );
 
-    if (format) {
-      const sanitizedFilename = sanitize(info.videoDetails.title);
-      res.header(
-        "Content-Disposition",
-        `attachment; filename="${sanitizedFilename}.mp4"`
-      );
-      ytdl(videoUrl, { format: format }).pipe(res);
+    if (scriptContent && scriptContent.length > 1) {
+      const jsonLdObject = JSON.parse(scriptContent[1]);
+      const videoData = jsonLdObject?.sharedContent?.url;
+      res.render("downloadlinkedin", { videoUrl: videoData, url: videoUrl });
     } else {
-      res.render("downloadmp3", { videoUrl: null });
+      res.render("linkedin", {
+        message: "No JSON-LD script found on the page.",
+      });
     }
   } catch (error) {
     console.error("Error:", error);
-    res.render("downloadmp3", { videoUrl: null });
-  } finally {
+    res.render("linkedin", { message: "An error occurred." });
   }
 });
-// ---------------------------------------------------------------------------------------------------------------------------------------------------
-app.get("/download", async (req, res) => {
-  const url = req.query.url;
-  // Validate the URL
-  if (ytdl(url)) {
-    try {
-      // Get video information
-      const info = await ytdl.getInfo(url);
-      const title = info.videoDetails.title;
 
-      // Set the appropriate headers for the download
-      res.header("Content-Disposition", `attachment; filename="${title}.mp4"`);
-      ytdl(url, { quality: "highest" }).pipe(res);
-    } catch (err) {
-      console.error("Error:", err);
-      res.render("index", { error: "Failed to download the video" });
+function getLinkedInPostId(url) {
+  try {
+    const urlObj = new URL(url);
+    const pathname = urlObj.pathname;
+    const postId = pathname.match(/\/([^/]+)\/?$/);
+    if (postId && postId.length > 1) {
+      return postId[1];
+    } else {
+      return null;
     }
-  } else {
-    res.render("index", { error: "Invalid URL" });
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
+}
+
+app.get("/downloadlinkedin", async (req, res) => {
+  try {
+    const { videoUrl } = req.query;
+    if (!videoUrl) {
+      return res.render("linkedin", { videoUrl: null });
+    }
+
+    const response = await axios.get(videoUrl);
+    const scriptContent = response.data.match(
+      /<script type="application\/ld\+json">([^<]+)<\/script>/
+    );
+
+    if (scriptContent && scriptContent.length > 1) {
+      const jsonLdObject = JSON.parse(scriptContent[1]);
+      const videoData = jsonLdObject.sharedContent;
+      const filePath = `${getLinkedInPostId(videoUrl)}.mp4`;
+
+      const videoStream = request.get(videoData);
+      const fileStream = fs.createWriteStream(filePath);
+
+      videoStream.pipe(fileStream);
+
+      fileStream.on("finish", () => {
+        res.download(filePath, filePath, (err) => {
+          if (err) {
+            console.error("Error:", err);
+            res.render("linkedin", { videoUrl: null });
+          }
+
+          fs.unlink(filePath, (err) => {
+            if (err) console.error("Error:", err);
+          });
+        });
+      });
+    } else {
+      res.render("linkedin", { videoUrl: null });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    res.render("linkedin", { videoUrl: null });
   }
 });
 
-// Start the server
+//=======================================Start the server =======================================
 const port = 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

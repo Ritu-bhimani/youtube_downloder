@@ -43,7 +43,7 @@
 </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8509471338094159"
         crossorigin="anonymous"></script>
-    <link rel="canonical" href="https://www.genyoutube.site/" />
+    <link rel="canonical" href="https://genyoutube.site/" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -145,6 +145,7 @@
             border-radius: 12px;
             padding: 15px 40px;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s linear;
         }
 
@@ -653,27 +654,6 @@
             <p>© 2023 Youtube Video Downloader</p>
         </div>
     </footer>
-    <script>
-        const form = document.getElementById("downloadForm");
-        const loadingDiv = document.getElementById("loading");
-
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const url = form.url.value;
-            loadingDiv.style.display = "block";
-
-            try {
-                const response = await fetch(`/views?url=${encodeURIComponent(url)}`);
-                const data = await response.json();
-
-                loadingDiv.style.display = "none";
-            } catch (err) {
-                console.error("Error downloading MP3:", err);
-                // alert("Error occurred during download");
-                loadingDiv.style.display = "none";
-            }
-        });
-    </script>
 </body>
 
 </html>
