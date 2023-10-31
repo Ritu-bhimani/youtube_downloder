@@ -551,11 +551,9 @@
                     <source src="<%= videoUrl %>" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
-
-                <% } %>
-                    </div>
-                    <div class="flex justify-center">
-                        <button type="submit" style="
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit" style="
                                   padding: 13px 25px;
                                   border-radius: 8px;
                                   font-size: 18px;
@@ -568,9 +566,9 @@
                                   background-image: linear-gradient(315deg, #2a2a72 0%, #0b6092 74%);
                                   cursor: pointer;
                                   ">
-                            Download
-                        </button>
-                        <button type="button" onclick="goBackAndReloadHomePage()" style="padding: 13px 25px;
+                        Download
+                    </button>
+                    <button type="button" onclick="goBackAndReloadHomePage()" style="padding: 13px 25px;
                                             border-radius: 8px;
                                             font-size: 18px;
                                             font-weight: 700;
@@ -582,8 +580,12 @@
                                             border: 1px solid #004182;
                                             background-image: linear-gradient(315deg, #2a2a72 0%, #0b6092 74%);
                                             cursor: pointer;">Go Back
-                        </button>
-                    </div>
+                    </button>
+                </div>
+                <% } else { %>
+                    <p style="border: 1px solid; font-weight: bold;color: red; padding: 10px 10px;">Sorry, the provided
+                        URL is not a valid Linkedin Video link.</p>
+                    <% } %>
         </form>
 
     </section>
