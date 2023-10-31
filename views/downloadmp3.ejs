@@ -1003,7 +1003,7 @@
     <section class="py-3">
 
         <form action="/mp3" method="GET" style="text-align: center;" id="form" class="section-container ">
-            <input type="text" id="url" name="videoUrl" value="<%= url %>" placeholder="Paste Linkedin Video Link Here"
+            <input type="url" id="url" name="videoUrl" value="<%= url %>" placeholder="Paste Linkedin Video Link Here"
                 required style="
                                         padding: 15px 15px;
                                         border: 1px solid #004182;
@@ -1044,6 +1044,8 @@
                     </div>
                 </div>
 
+                <% } else { %>
+                    <p style="border: 1px solid; font-weight: bold;color: red; padding: 10px 10px;">Sorry, the provided URL is not a valid YouTube video link.</p>
                 <% } %>
 
         </form>
