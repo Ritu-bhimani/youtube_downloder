@@ -36,8 +36,23 @@
         }
       }
 </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8509471338094159"
-    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    // Function to load Google Translate after the page is fully loaded
+    function loadGoogleTranslate() {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.head.appendChild(script);
+    }
+
+    // Function to initialize Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en' },
+        'google_translate_element'
+      );
+    }
+  </script>
   <link rel="canonical" href="https://genyoutube.site/">
   <title>Contact</title>
 
@@ -388,9 +403,9 @@
 
 </head>
 
-<body>
+<body onload="loadGoogleTranslate()">
   <!-------------------------------------------------------------------- header------------------------------------------------------------------ -->
-  <header class="box-shadow">
+  <!-- <header class="box-shadow">
     <div class="box-shadow ">
       <div class="d-flex justify-content-between align-item-center section-container px-2">
         <p></p>
@@ -419,48 +434,49 @@
           Downloader</a>
       </div>
     </div>
-  </header>
-  <!-- ----------------------------------------------------------------- form------------------------------------------------------------------->
-  <section class="content">
-    <div class="section-container d-flex justify-content-center all-section text-align-center pt-5 py mx">
-      <div style="width: 500px;">
-        <h2 class="title ">Contact us</h2>
-        <form id="contact" action="" method="post">
-          <fieldset>
-            <input placeholder="Your name" type="text" tabindex="1" required autofocus>
-          </fieldset>
-          <fieldset>
-            <input placeholder="Your Email Address" type="email" tabindex="2" required>
-          </fieldset>
-          <fieldset>
-            <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required>
-          </fieldset>
-          <fieldset>
-            <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
-          </fieldset>
-          <fieldset>
-            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-          </fieldset>
-        </form>
+  </header> -->
+  <%- include('header.ejs') -%>
+    <!-- ----------------------------------------------------------------- form------------------------------------------------------------------->
+    <section class="content">
+      <div class="section-container d-flex justify-content-center all-section text-align-center pt-5 py mx">
+        <div style="width: 500px;">
+          <h2 class="title ">Contact us</h2>
+          <form id="contact" action="" method="post">
+            <fieldset>
+              <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Your Email Address" type="email" tabindex="2" required>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required>
+            </fieldset>
+            <fieldset>
+              <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+            </fieldset>
+            <fieldset>
+              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+            </fieldset>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
-  <!-- ads code -->
-  <!-- <%- include('ads/native.js') -%> -->
-  <!------------------------------------------------------ footer---------------------------------------------------- -->
-  <footer class="footer-bg mt-16">
-    <div class="footer ">
-      <div class="section-container row align-item-center justify-content-center">
-        <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
-        <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
-        <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
-          service</a>
-        <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
-        <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+    </section>
+    <!-- ads code -->
+    <!-- <%- include('ads/native.js') -%> -->
+    <!------------------------------------------------------ footer---------------------------------------------------- -->
+    <footer class="footer-bg mt-16">
+      <div class="footer ">
+        <div class="section-container row align-item-center justify-content-center">
+          <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
+          <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
+          <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
+            service</a>
+          <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
+          <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+        </div>
+        <p>© 2023 Youtube Video Downloader</p>
       </div>
-      <p>© 2023 Youtube Video Downloader</p>
-    </div>
-  </footer>
+    </footer>
 </body>
 
 

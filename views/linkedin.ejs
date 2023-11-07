@@ -43,6 +43,34 @@
 </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8509471338094159"
         crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?
+        cb=googleTranslateElementInit">
+        </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en' },
+                'google_translate_element'
+            );
+        }
+    </script> -->
+    <script type="text/javascript">
+        // Function to load Google Translate after the page is fully loaded
+        function loadGoogleTranslate() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.head.appendChild(script);
+        }
+
+        // Function to initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en' },
+                'google_translate_element'
+            );
+        }
+    </script>
     <link rel="canonical" href="https://genyoutube.site/" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -433,9 +461,9 @@
     </style>
 </head>
 
-<body>
+<body onload="loadGoogleTranslate()">
     <!-------------------------------------------------------------------- header------------------------------------------------------------------ -->
-    <header class="box-shadow">
+    <!-- <header class="box-shadow">
         <div class="box-shadow ">
             <div class="d-flex justify-content-between align-item-center section-container px-2">
                 <p></p>
@@ -464,196 +492,197 @@
                     Downloader</a>
             </div>
         </div>
-    </header>
-    <section class="py">
-        <form action="/views" method="GET">
-            <!-- ----------------------------------------------------------------- Youtube Downloader------------------------------------------------------------------->
-            <div class="section-container  text-align-center youtube-downloader ">
-                <h1 class="title">Linkedin Video Downloader</h1>
-                <p>
-                    Fast and free all in one video downloader
-                </p>
-                <div class="row justify-content-center py mx">
-                    <div class="w-7 w-sm-1">
-                        <input type="url" id="url" name="videoUrl" placeholder="Paste your linkedin video link here"
-                            class="link-textbox" required />
-                    </div>
-                    <div class="w-33 w-sm-1 text-align-left download-btn" style="padding-left: 15px;">
-                        <button type="submit" class="submit-btn ">Download</button>
-                    </div>
-
-                </div>
-
-            </div>
-        </form>
-        <!-- ads code -->
-        <!-- <%- include('ads/native.js') -%> -->
-        <!-- --------------------------------------------------------------overview-------------------------------------------------------------- -->
-        <div class="section-container online-youtube text-align-center faq  ">
-            <h2 class="px-5 title">Overview</h2>
-            <div class="text-align-left" style="padding: 0 25px;">
-                <p>LinkedInis the most popular site for professionals and those looking to find jobs. If you
-                    require help to download linkedin video from linke din. The linked in video downloader
-                    can do precisely that, and without the need for extra software or applications!
-                </p>
-                <p style="padding: 24px 0;">Nowadays, individuals make use of multiple websites to enhance their
-                    presence online
-                    and remain connected to others. If you'd like to stay connected to your friends, social
-                    media sites like Facebook, Instagram and Snapchat offer casual channels for
-                    communication.</p>
-                <p>If you're a professional seeking to further expand your business or career, LinkedIn
-                    offers numerous networking possibilities that can be beneficial to both. Additionally, our
-                    guides explain how to download linkedin videos for free!
-                </p>
-            </div>
-        </div>
-        <!-- --------------------------------------------------------------How to download-------------------------------------------------------------- -->
-        <div class="section-container howDownload  text-align-center py">
-            <h2 class="title">How to download linkedin videos?</h2>
-
-            <div class="row justify-content-center" style="padding: 10px 40px;">
-                <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
-                    <div class=" box1"><i class="fa-solid fa-copy"></i></div>
-                    <h3>
-                        <b>Step 1 </b>
-                    </h3>
+    </header> -->
+    <%- include('header.ejs') -%>
+        <section class="py">
+            <form action="/views" method="GET">
+                <!-- ----------------------------------------------------------------- Youtube Downloader------------------------------------------------------------------->
+                <div class="section-container  text-align-center youtube-downloader ">
+                    <h1 class="title">Linkedin Video Downloader</h1>
                     <p>
-                        It is possible to download or store LinkedIn videos and photos within a matter of
-                        seconds. Copy the linke din videos URL and paste it into the search box.
+                        Fast and free all in one video downloader
                     </p>
-                </div>
-                <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
-                    <div class=" box2"><i class="fa-solid fa-paste"></i></div>
-                    <h3>
-                        <b>Step 2 </b>
-                    </h3>
-                    <p>
-                        Simply type the link of the linkedin video in the box that allows you to get the
-                        linkedin video download.
-                    </p>
-                </div>
-                <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
-                    <div class=" box3"><i class="fa-solid fa-download"></i></div>
-                    <h3>
-                        <b>Step 3 </b>
-                    </h3>
-                    <p>
-                        GenYoutube LinkedIn Downloader is a web-based service that is compatible
-                        with all platforms such as iOS and Android Windows, Mac, television, and Linux
-                        browsers.
-                    </p>
-                </div>
-                <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
-                    <div class=" box1"><i class="fa-solid fa-cloud-arrow-down"></i></div>
-                    <h3>
-                        <b>Step 4 </b>
-                    </h3>
-                    <p>
-                        Online GenYoutube linked in video downloader is completely free and you don't
-                        require monthly or annual subscriptions.
-                    </p>
-                </div>
-                <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
-                    <div class=" box2"><i class="fa-solid fa-link"></i></div>
-                    <h3>
-                        <b>Step 5 </b>
-                    </h3>
-                    <p>
-                        GenYoutube does not want users to sign up for an account with LinkedIn. In
-                        LinkedIn free downloader Just enter the link , and then download the link!
-                    </p>
-                </div>
-                <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
-                    <div class=" box3"><i class="fa-solid fa-film"></i></div>
-                    <h3>
-                        <b>Step 6 </b>
-                    </h3>
-                    <p>
-                        click the link for download linkedin video at the highest speed
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!------------------------------------------------------ FAQ---------------------------------------------------- -->
-        <div class="section-container faq text-align-center " style="padding-bottom: 60px;">
-            <h2 class="title">FAQs</h2>
-            <div class="text-align-left">
-                <ul id="accordion" role="tablist" aria-multiselectable="true">
-                    <li>
-                        <div>
-                            <h4><b>Do I have to download the tool?</b>
-                            </h4>
-                            <div>
-                                The linked in video downloader, the story reels pin downloader does not need any
-                                installations. It's
-                                online for you to download linkedin video. Copy and paste a link to the video you
-                                want
-                                to save in
-                                the field of the linked in video downloader. Save it free of charge on your linke
-                                din
-                            </div>
+                    <div class="row justify-content-center py mx">
+                        <div class="w-7 w-sm-1">
+                            <input type="url" id="url" name="videoUrl" placeholder="Paste your linkedin video link here"
+                                class="link-textbox" required />
                         </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h4><b>What kind of quality linkedin video will I see after I download it via the
-                                    website linke din?</b></h4>
+                        <div class="w-33 w-sm-1 text-align-left download-btn" style="padding-left: 15px;">
+                            <button type="submit" class="submit-btn ">Download</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </form>
+            <!-- ads code -->
+            <!-- <%- include('ads/native.js') -%> -->
+            <!-- --------------------------------------------------------------overview-------------------------------------------------------------- -->
+            <div class="section-container online-youtube text-align-center faq  ">
+                <h2 class="px-5 title">Overview</h2>
+                <div class="text-align-left" style="padding: 0 25px;">
+                    <p>LinkedInis the most popular site for professionals and those looking to find jobs. If you
+                        require help to download linkedin video from linke din. The linked in video downloader
+                        can do precisely that, and without the need for extra software or applications!
+                    </p>
+                    <p style="padding: 24px 0;">Nowadays, individuals make use of multiple websites to enhance their
+                        presence online
+                        and remain connected to others. If you'd like to stay connected to your friends, social
+                        media sites like Facebook, Instagram and Snapchat offer casual channels for
+                        communication.</p>
+                    <p>If you're a professional seeking to further expand your business or career, LinkedIn
+                        offers numerous networking possibilities that can be beneficial to both. Additionally, our
+                        guides explain how to download linkedin videos for free!
+                    </p>
+                </div>
+            </div>
+            <!-- --------------------------------------------------------------How to download-------------------------------------------------------------- -->
+            <div class="section-container howDownload  text-align-center py">
+                <h2 class="title">How to download linkedin videos?</h2>
+
+                <div class="row justify-content-center" style="padding: 10px 40px;">
+                    <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
+                        <div class=" box1"><i class="fa-solid fa-copy"></i></div>
+                        <h3>
+                            <b>Step 1 </b>
+                        </h3>
+                        <p>
+                            It is possible to download or store LinkedIn videos and photos within a matter of
+                            seconds. Copy the linke din videos URL and paste it into the search box.
+                        </p>
+                    </div>
+                    <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
+                        <div class=" box2"><i class="fa-solid fa-paste"></i></div>
+                        <h3>
+                            <b>Step 2 </b>
+                        </h3>
+                        <p>
+                            Simply type the link of the linkedin video in the box that allows you to get the
+                            linkedin video download.
+                        </p>
+                    </div>
+                    <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
+                        <div class=" box3"><i class="fa-solid fa-download"></i></div>
+                        <h3>
+                            <b>Step 3 </b>
+                        </h3>
+                        <p>
+                            GenYoutube LinkedIn Downloader is a web-based service that is compatible
+                            with all platforms such as iOS and Android Windows, Mac, television, and Linux
+                            browsers.
+                        </p>
+                    </div>
+                    <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
+                        <div class=" box1"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                        <h3>
+                            <b>Step 4 </b>
+                        </h3>
+                        <p>
+                            Online GenYoutube linked in video downloader is completely free and you don't
+                            require monthly or annual subscriptions.
+                        </p>
+                    </div>
+                    <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
+                        <div class=" box2"><i class="fa-solid fa-link"></i></div>
+                        <h3>
+                            <b>Step 5 </b>
+                        </h3>
+                        <p>
+                            GenYoutube does not want users to sign up for an account with LinkedIn. In
+                            LinkedIn free downloader Just enter the link , and then download the link!
+                        </p>
+                    </div>
+                    <div class="w-3 w-md-2 w-sm-1 box" style="padding: 20px 30px;">
+                        <div class=" box3"><i class="fa-solid fa-film"></i></div>
+                        <h3>
+                            <b>Step 6 </b>
+                        </h3>
+                        <p>
+                            click the link for download linkedin video at the highest speed
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!------------------------------------------------------ FAQ---------------------------------------------------- -->
+            <div class="section-container faq text-align-center " style="padding-bottom: 60px;">
+                <h2 class="title">FAQs</h2>
+                <div class="text-align-left">
+                    <ul id="accordion" role="tablist" aria-multiselectable="true">
+                        <li>
                             <div>
+                                <h4><b>Do I have to download the tool?</b>
+                                </h4>
                                 <div>
-                                    The linked in video downloader will download only the best quality for you. You
-                                    can
-                                    save a
-                                    complete HD video in 4K format directly from linke din when it's uploaded in
-                                    this
-                                    high-quality.
-                                    MP4 quality videos are accessible for linkedin video download. click at the
-                                    bottom
-                                    right of the
-                                    program. There is no need to change your settings anymore. </div>
-                            </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h4><b>What devices can I use to download a video using this program?</b></h4>
-                            <div>
-                                <div>
-                                    You can use any device that you want! The linked in video downloader works with
-                                    every device
-                                    and system, From Android to IOS and from Xiaomi to Mac as well as Windows.
+                                    The linked in video downloader, the story reels pin downloader does not need any
+                                    installations. It's
+                                    online for you to download linkedin video. Copy and paste a link to the video you
+                                    want
+                                    to save in
+                                    the field of the linked in video downloader. Save it free of charge on your linke
+                                    din
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h4><b>Are you able to download a live stream on LinkedIn?</b></h4>
+                        </li>
+                        <li>
                             <div>
-                                There's no way to download a live LinkedIn video, however using the existing
-                                downloader
-                                will help in
-                                downloading it.
+                                <h4><b>What kind of quality linkedin video will I see after I download it via the
+                                        website linke din?</b></h4>
+                                <div>
+                                    <div>
+                                        The linked in video downloader will download only the best quality for you. You
+                                        can
+                                        save a
+                                        complete HD video in 4K format directly from linke din when it's uploaded in
+                                        this
+                                        high-quality.
+                                        MP4 quality videos are accessible for linkedin video download. click at the
+                                        bottom
+                                        right of the
+                                        program. There is no need to change your settings anymore. </div>
+                                </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h4><b>What devices can I use to download a video using this program?</b></h4>
+                                <div>
+                                    <div>
+                                        You can use any device that you want! The linked in video downloader works with
+                                        every device
+                                        and system, From Android to IOS and from Xiaomi to Mac as well as Windows.
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                        <li>
+                            <div>
+                                <h4><b>Are you able to download a live stream on LinkedIn?</b></h4>
+                                <div>
+                                    There's no way to download a live LinkedIn video, however using the existing
+                                    downloader
+                                    will help in
+                                    downloading it.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-    </section>
-    <!------------------------------------------------------ footer---------------------------------------------------- -->
-    <footer class="footer-bg mt-16">
-        <div class="footer ">
-            <div class="section-container row align-item-center justify-content-center">
-                <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
-                    service</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+        </section>
+        <!------------------------------------------------------ footer---------------------------------------------------- -->
+        <footer class="footer-bg mt-16">
+            <div class="footer ">
+                <div class="section-container row align-item-center justify-content-center">
+                    <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
+                        service</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+                </div>
+                <p>© 2023 Youtube Video Downloader</p>
             </div>
-            <p>© 2023 Youtube Video Downloader</p>
-        </div>
-    </footer>
+        </footer>
 </body>
 
 </html>

@@ -40,6 +40,23 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8509471338094159"
         crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // Function to load Google Translate after the page is fully loaded
+        function loadGoogleTranslate() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.head.appendChild(script);
+        }
+
+        // Function to initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en' },
+                'google_translate_element'
+            );
+        }
+    </script>
     <link rel="canonical" href="https://genyoutube.site/" />
     <title>Terms Of Service</title>
 
@@ -375,9 +392,9 @@
 
 </head>
 
-<body>
+<body onload="loadGoogleTranslate()">
     <!-------------------------------------------------------------------- header------------------------------------------------------------------ -->
-    <header class="box-shadow">
+    <!-- <header class="box-shadow">
         <div class="box-shadow ">
             <div class="d-flex justify-content-between align-item-center section-container px-2">
                 <p></p>
@@ -407,92 +424,93 @@
             </div>
         </div>
         </div>
-    </header>
-    <section>
-        <!-- ads code -->
-        <!-- <%- include('ads/native.js') -%> -->
-        <!-- --------------------------------------------------------------Online YouTube-------------------------------------------------------------- -->
-        <div class="section-container online-youtube py text-align-center faq">
-            <h2 class="px-5 title">Terms and Conditions </h2>
-            <div class="text-align-left" style="padding: 25px;">
-                <p>By using the gen youtube. site, users agree to the terms and conditions as given below:</p>
-                <ul style="list-style: none;">
-                    <li>
-                        <div>1)<b> Purpose </b> – The genyoutube. site website is solely to be used for personal or
-                            non-commercial purposes. Users can download
-                            YouTube videos from the site for personal use only.</div>
-                    </li>
-                    <li>
+    </header> -->
+    <%- include('header.ejs') -%>
+        <section>
+            <!-- ads code -->
+            <!-- <%- include('ads/native.js') -%> -->
+            <!-- --------------------------------------------------------------Online YouTube-------------------------------------------------------------- -->
+            <div class="section-container online-youtube py text-align-center faq">
+                <h2 class="px-5 title">Terms and Conditions </h2>
+                <div class="text-align-left" style="padding: 25px;">
+                    <p>By using the gen youtube. site, users agree to the terms and conditions as given below:</p>
+                    <ul style="list-style: none;">
+                        <li>
+                            <div>1)<b> Purpose </b> – The genyoutube. site website is solely to be used for personal or
+                                non-commercial purposes. Users can download
+                                YouTube videos from the site for personal use only.</div>
+                        </li>
+                        <li>
 
-                        <div>2)<b> Prohibited Content </b> – Gen youtube should not be used to download infringing
-                            content such
-                            as copyrighted videos or videos
-                            requiring explicit permission.</div>
-                    </li>
-                    <li>
+                            <div>2)<b> Prohibited Content </b> – Gen youtube should not be used to download infringing
+                                content such
+                                as copyrighted videos or videos
+                                requiring explicit permission.</div>
+                        </li>
+                        <li>
 
-                        <div>3)<b> Restriction on Changes </b> – Users are not allowed to change, adapt, or
-                            translate
-                            Genyoutube.site in any way unless having
-                            express written permission from the owner of the site.</div>
-                    </li>
-                    <li>
-                        <div> 4)<b> Privacy </b> – Your privacy is of utmost importance to us. Therefore, we will
-                            not be
-                            using
-                            your personal information without
-                            consent taken from you. We will also not sell the same to any third party.
-                        </div>
-                    </li>
-                    <li>
-                        <div> 5)<b> Without Warranty </b>– Genyoutube.site comes without any warranty, either
-                            express or
-                            implied
-                            related to it's timeliness,
-                            accuracy, and reliability.</div>
-                    </li>
-                    <li>
-                        <div> 6)<b> Liability Limitation </b> – Genyoutube.site will not be responsible in any way
-                            for
-                            any
-                            direct or indirect damages related to
-                            the use of any content available on the site.</div>
-                    </li>
-                    <li>
-                        <div> 7)<b> Indemnification </b> – Genyoutube.site will be held harmless from all claims,
-                            costs,
-                            and
-                            damages in relation to the use of
-                            the website or any content available on it..</div>
-                    </li>
-                    <li>
-                        <div> 8)<b> Termination </b> – Genyoutube. site has the right to terminate the access of
-                            users
-                            to the
-                            website at any time, for any
-                            reason either with notice or without notice.</div>
-                    </li>
-                    <p>Usage of the site will be deemed as an acceptance to the terms and conditions specified
-                        above.
-                    </p>
-                </ul>
+                            <div>3)<b> Restriction on Changes </b> – Users are not allowed to change, adapt, or
+                                translate
+                                Genyoutube.site in any way unless having
+                                express written permission from the owner of the site.</div>
+                        </li>
+                        <li>
+                            <div> 4)<b> Privacy </b> – Your privacy is of utmost importance to us. Therefore, we will
+                                not be
+                                using
+                                your personal information without
+                                consent taken from you. We will also not sell the same to any third party.
+                            </div>
+                        </li>
+                        <li>
+                            <div> 5)<b> Without Warranty </b>– Genyoutube.site comes without any warranty, either
+                                express or
+                                implied
+                                related to it's timeliness,
+                                accuracy, and reliability.</div>
+                        </li>
+                        <li>
+                            <div> 6)<b> Liability Limitation </b> – Genyoutube.site will not be responsible in any way
+                                for
+                                any
+                                direct or indirect damages related to
+                                the use of any content available on the site.</div>
+                        </li>
+                        <li>
+                            <div> 7)<b> Indemnification </b> – Genyoutube.site will be held harmless from all claims,
+                                costs,
+                                and
+                                damages in relation to the use of
+                                the website or any content available on it..</div>
+                        </li>
+                        <li>
+                            <div> 8)<b> Termination </b> – Genyoutube. site has the right to terminate the access of
+                                users
+                                to the
+                                website at any time, for any
+                                reason either with notice or without notice.</div>
+                        </li>
+                        <p>Usage of the site will be deemed as an acceptance to the terms and conditions specified
+                            above.
+                        </p>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
-    <!------------------------------------------------------ footer---------------------------------------------------- -->
-    <footer class="footer-bg mt-16">
-        <div class="footer ">
-            <div class="section-container row align-item-center justify-content-center">
-                <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
-                    service</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+        </section>
+        <!------------------------------------------------------ footer---------------------------------------------------- -->
+        <footer class="footer-bg mt-16">
+            <div class="footer ">
+                <div class="section-container row align-item-center justify-content-center">
+                    <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
+                        service</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+                </div>
+                <p>© 2023 Youtube Video Downloader</p>
             </div>
-            <p>© 2023 Youtube Video Downloader</p>
-        </div>
-    </footer>
+        </footer>
 
 </body>
 

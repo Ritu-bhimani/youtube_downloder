@@ -39,6 +39,23 @@
 </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8509471338094159"
         crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // Function to load Google Translate after the page is fully loaded
+        function loadGoogleTranslate() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.head.appendChild(script);
+        }
+
+        // Function to initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en' },
+                'google_translate_element'
+            );
+        }
+    </script>
     <link rel="canonical" href="https://genyoutube.site/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -456,9 +473,9 @@
 
 </head>
 
-<body>
+<body onload="loadGoogleTranslate()">
     <!-------------------------------------------------------------------- header------------------------------------------------------------------ -->
-    <header class="box-shadow">
+    <!-- <header class="box-shadow">
         <div class="box-shadow ">
             <div class="d-flex justify-content-between align-item-center section-container px-2">
                 <p></p>
@@ -487,12 +504,13 @@
                     Downloader</a>
             </div>
         </div>
-    </header>
-    <!-- ads code -->
-    <!-- <%- include('ads/native.js') -%> -->
-    <!--  ----------------------------------------------------------contant--------------------------------------------------- -->
-    <section>
-        <!-- <form action="/downloadlinkedin" method="GET" style="text-align: center;" class="section-container">
+    </header> -->
+    <%- include('header.ejs') -%>
+        <!-- ads code -->
+        <!-- <%- include('ads/native.js') -%> -->
+        <!--  ----------------------------------------------------------contant--------------------------------------------------- -->
+        <section>
+            <!-- <form action="/downloadlinkedin" method="GET" style="text-align: center;" class="section-container">
 
             <% if (videoUrl) { %>
                 <video height="550px" style="margin-top: 30px; border-radius: 8px" controls autoplay>
@@ -534,9 +552,9 @@
                         </button>
                     </div>
         </form> -->
-        <form action="/downloadlinkedin" method="GET" style="text-align: center;" class="section-container">
-            <input type="text" id="url" name="videoUrl" value="<%= url %>" placeholder="Paste Linkedin Video Link Here"
-                required style="
+            <form action="/downloadlinkedin" method="GET" style="text-align: center;" class="section-container">
+                <input type="text" id="url" name="videoUrl" value="<%= url %>"
+                    placeholder="Paste Linkedin Video Link Here" required style="
                         padding: 15px 15px;
                         border: 1px solid #004182;
                         background-color: #2c2c2c;
@@ -548,47 +566,47 @@
                       " />
 
 
-            <% if (videoUrl) { %>
+                <% if (videoUrl) { %>
 
-                <video height="550px" width="100%" style="margin-top: 30px; border-radius: 8px" controls autoplay>
-                    <source src="<%= videoUrl %>" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-                </div>
-                <div class="flex justify-center">
-                    <button type="submit" class="submit-btn">
-                        Download
-                    </button>
-                    <a href="/linkedindownload" class="submit-btn">Go Back</a>
-                </div>
-                <% } else { %>
-                    <p
-                        style="border: 1px solid; font-weight: bold;color: red; padding: 25px ; font-size: 18px; margin-top: 18px;">
-                        Sorry,
-                        the provided
-                        URL is not a valid Linkedin Video link.</p>
-                    <div style="margin-top: 12px;">
-                        <a href="/linkedindownload" class="submit-btn">Go
-                            Back</a>
+                    <video height="550px" width="100%" style="margin-top: 30px; border-radius: 8px" controls autoplay>
+                        <source src="<%= videoUrl %>" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                     </div>
-                    <% } %>
-        </form>
+                    <div class="flex justify-center">
+                        <button type="submit" class="submit-btn">
+                            Download
+                        </button>
+                        <a href="/linkedindownload" class="submit-btn">Go Back</a>
+                    </div>
+                    <% } else { %>
+                        <p
+                            style="border: 1px solid; font-weight: bold;color: red; padding: 25px ; font-size: 18px; margin-top: 18px;">
+                            Sorry,
+                            the provided
+                            URL is not a valid Linkedin Video link.</p>
+                        <div style="margin-top: 12px;">
+                            <a href="/linkedindownload" class="submit-btn">Go
+                                Back</a>
+                        </div>
+                        <% } %>
+            </form>
 
-    </section>
-    <!------------------------------------------------------ footer---------------------------------------------------- -->
-    <footer class="footer-bg mt-16">
-        <div class="footer ">
-            <div class="section-container row align-item-center justify-content-center">
-                <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
-                    service</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+        </section>
+        <!------------------------------------------------------ footer---------------------------------------------------- -->
+        <footer class="footer-bg mt-16">
+            <div class="footer ">
+                <div class="section-container row align-item-center justify-content-center">
+                    <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
+                        service</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+                </div>
+                <p>© 2023 Youtube Video Downloader</p>
             </div>
-            <p>© 2023 Youtube Video Downloader</p>
-        </div>
-    </footer>
+        </footer>
 
 
 </body>

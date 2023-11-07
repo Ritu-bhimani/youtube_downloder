@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        // Function to load Google Translate after the page is fully loaded
+        function loadGoogleTranslate() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.head.appendChild(script);
+        }
+
+        // Function to initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en' },
+                'google_translate_element'
+            );
+        }
+    </script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .skiptranslate iframe {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0px !important;
+        }
+
+        .goog-te-gadget img {
+            display: none !important;
+        }
+
+        .goog-te-gadget a {
+            display: none !important;
+        }
+
+        body {
+            font-family: open sans, sans-serif;
+            top: 0 !important;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        .text-align-center {
+            text-align: center;
+        }
+
+        .text-align-left {
+            text-align: left;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .justify-content-center {
+            justify-content: center;
+        }
+
+        .align-item-center {
+            align-items: center;
+        }
+
+        .w-3 {
+            width: 33.33%;
+        }
+
+        .w-5 {
+            width: 20%;
+        }
+
+        .w-7 {
+            width: 70%;
+        }
+
+        .w-33 {
+            width: 30%;
+        }
+
+        .py {
+            padding: 60px 0;
+        }
+
+        .py-3 {
+            padding: 30px 0;
+        }
+
+        .mx {
+            margin: 0 100px;
+        }
+
+        #language {
+            border: 1px solid #0e0f0d;
+        }
+
+        .section-container {
+            max-width: 992px;
+            margin: 0 auto;
+        }
+
+        .link-textbox {
+            width: 100%;
+            padding: 20px 20px 14px 20px;
+            border-radius: 12px;
+            border: 2px solid #ffc4c4;
+        }
+
+        .submit-btn {
+            background-color: red;
+            font-size: 18px;
+            border: none !important;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(255, 86, 63, 0.4);
+            border-radius: 12px;
+            padding: 15px 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s linear;
+        }
+
+        .submit-btn:hover {
+            background-color: #4a474c;
+            color: #fff;
+            box-shadow: none;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #888;
+            font-size: 20px;
+        }
+
+        .px-2 {
+            padding: 0 20px;
+        }
+
+        .px-5 {
+            padding: 0 50px;
+        }
+
+        .title {
+            font-size: 38px;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            color: black;
+        }
+
+        /* -------------------------------------------------------------------header------------------------------------------------------------------- */
+
+        .header-text {
+            color: #ef4444;
+            font-weight: 700;
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+        }
+
+        .header-menu-wrap {
+            border-right: 2px solid black;
+        }
+
+        .header-menu {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .header-menu:hover {
+            color: #ef4444;
+        }
+
+        .box-shadow {
+            box-shadow: 0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            /* margin-top: -20px; */
+        }
+    </style>
+</head>
+
+<body onload="loadGoogleTranslate()">
+    <header class="box-shadow">
+        <div class="box-shadow ">
+            <div class="d-flex justify-content-between align-item-center section-container px-2">
+                <p></p>
+                <h2 class="header-text py-3">Youtube Video Downloader</h2>
+                <!-- <div>
+              <select name="language" id="language">
+                <option value="English">English</option>
+                <option value="العربية">العربية</option>
+                <option value="Türkçe">Türkçe</option>
+                <option value="हिन्दी / Hindī">हिन्दी / Hindī</option>
+                <option value="Français">Français</option>
+                <option value="Español">Español</option>
+                <option value="Indonesian">Indonesian</option>
+              </select>
+            </div> -->
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #dfdfdf; padding: 32px 0px; ">
+
+            <div class=" section-container d-flex justify-content-between mx text-align-center">
+                <a class="header-menu" href="/">Youtube Downloader</a>
+                <div class="header-menu-wrap"></div>
+                <a class="header-menu" href="youtubetomp3">Youtube to MP3</a>
+                <div class="header-menu-wrap"></div>
+                <a class="header-menu " href="linkedindownload">Linkedin
+                    Downloader</a>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>

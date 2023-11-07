@@ -45,6 +45,23 @@
 </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8509471338094159"
         crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // Function to load Google Translate after the page is fully loaded
+        function loadGoogleTranslate() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.head.appendChild(script);
+        }
+
+        // Function to initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en' },
+                'google_translate_element'
+            );
+        }
+    </script>
     <link rel="canonical" href="https://genyoutube.site/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -467,9 +484,9 @@
 
 </head>
 
-<body>
+<body onload="loadGoogleTranslate()">
     <!-------------------------------------------------------------------- header------------------------------------------------------------------ -->
-    <header class="box-shadow">
+    <!-- <header class="box-shadow">
         <div class="box-shadow ">
             <div class="d-flex justify-content-between align-item-center section-container px-2">
                 <p></p>
@@ -497,25 +514,26 @@
                     Downloader</a>
             </div>
         </div>
-    </header>
-    <!-- ads code -->
-    <!-- <%- include('ads/native.js') -%> -->
-    <!--  ----------------------------------------------------------contant--------------------------------------------------- -->
-    <section class="section-container py-3 online-youtube mx">
-        <h2 class="text-align-center">
-            Youtube to mp3 converter
-        </h2>
-        <p>YouTube to MP3 is all in one media converter. YouTube to MP3 gives you the right to
-            download and convert any video to MP3 and download videos from YouTube and
-            LinkedIn. YouTube to MP3 helps to convert this video to music very easily. You can
-            access this tool anytime, anywhere. mp3 the converter is user-friendly. Now you can
-            listen to music offline.</p>
-    </section>
-    <section class="py-3">
+    </header> -->
+    <%- include('header.ejs') -%>
+        <!-- ads code -->
+        <!-- <%- include('ads/native.js') -%> -->
+        <!--  ----------------------------------------------------------contant--------------------------------------------------- -->
+        <section class="section-container py-3 online-youtube mx">
+            <h2 class="text-align-center">
+                Youtube to mp3 converter
+            </h2>
+            <p>YouTube to MP3 is all in one media converter. YouTube to MP3 gives you the right to
+                download and convert any video to MP3 and download videos from YouTube and
+                LinkedIn. YouTube to MP3 helps to convert this video to music very easily. You can
+                access this tool anytime, anywhere. mp3 the converter is user-friendly. Now you can
+                listen to music offline.</p>
+        </section>
+        <section class="py-3">
 
-        <form action="/mp3" method="GET" style="text-align: center;" id="form" class="section-container ">
-            <input type="text" id="url" name="videoUrl" value="<%= url %>" placeholder="Paste Linkedin Video Link Here"
-                required style="
+            <form action="/mp3" method="GET" style="text-align: center;" id="form" class="section-container ">
+                <input type="text" id="url" name="videoUrl" value="<%= url %>"
+                    placeholder="Paste Linkedin Video Link Here" required style="
                                         padding: 15px 15px;
                                         border: 1px solid #004182;
                                         background-color: #2c2c2c;
@@ -527,142 +545,144 @@
                                       " />
 
 
-            <% if (videoUrl) { %>
+                <% if (videoUrl) { %>
 
 
-                <div class="d-flex justify-content-between align-item-center " id="loaderbox"
-                    style="flex-direction: column;">
-                    <div id="loader"></div><span
-                        style="padding-right: 10px; font-weight: bold; font-size: 20px; padding: 10px 0;"
-                        id="pleaseWait">Please
-                        wait
-                        <span id="countdown"></span>
-                    </span>
-                </div>
-                <div style="display:inline-block ;">
-                    <div id="videoFrame" style="display: none;">
-                        <iframe width="560" height="315" src="<%= videoUrl %>" frameborder="0" allowfullscreen></iframe>
-                        <div class="flex justify-center py-3 ">
-                            <button type="submit" class="submit-btn" id="mp4Button">
-                                Video Download
-                            </button>
-                            <button type="submit" class="submit-btn" id="mp3Button">
-                                Mp3 Download
-                            </button>
-                            <a href="/youtubetomp3" class="submit-btn">Go Back</a>
+                    <div class="d-flex justify-content-between align-item-center " id="loaderbox"
+                        style="flex-direction: column;">
+                        <div id="loader"></div><span
+                            style="padding-right: 10px; font-weight: bold; font-size: 20px; padding: 10px 0;"
+                            id="pleaseWait">Please
+                            wait
+                            <span id="countdown"></span>
+                        </span>
+                    </div>
+                    <div style="display:inline-block ;">
+                        <div id="videoFrame" style="display: none;">
+                            <iframe width="560" height="315" src="<%= videoUrl %>" frameborder="0"
+                                allowfullscreen></iframe>
+                            <div class="flex justify-center py-3 ">
+                                <button type="submit" class="submit-btn" id="mp4Button">
+                                    Video Download
+                                </button>
+                                <button type="submit" class="submit-btn" id="mp3Button">
+                                    Mp3 Download
+                                </button>
+                                <a href="/youtubetomp3" class="submit-btn">Go Back</a>
+                            </div>
                         </div>
                     </div>
+
+                    <% } else { %>
+                        <p style="border: 1px solid; font-weight: bold;color: red; padding: 25px ; font-size: 18px;">
+                            Sorry,
+                            the provided
+                            URL is not a valid YouTube video link.</p>
+                        <div style="margin-top: 12px;">
+                            <a href="/youtubetomp3" class="submit-btn">Go
+                                Back</a>
+                        </div>
+                        <% } %>
+
+            </form>
+
+        </section>
+        <section class="section-container online-youtube mx">
+            <p class="py-3">Youtube to mp3 became very popular in the field of YouTube to mp3 conversion. the
+                most trusted tool for all worldwide users.</P>
+            <P class="py-3">
+                Client satisfaction is our top priority. That is why YouTube to mp3 gives the best
+                high-quality conversions that keep the best sound quality. youtube to mp3 is easy to
+                understand and use.
+            </p>
+            <p class="py-3">Youtube to mp3 is a fully functional tool accessible from any web browser. This
+                platform is on the web, so you don't have to sign up either. youtube to mp3 stands for
+                efficiency, quality, and ease of use. We continue to give the best experience.</p>
+        </section>
+        <!------------------------------------------------------ footer---------------------------------------------------- -->
+        <footer class="footer-bg mt-16">
+            <div class="footer ">
+                <div class="section-container row align-item-center justify-content-center">
+                    <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
+                        service</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
+                    <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
                 </div>
-
-                <% } else { %>
-                    <p style="border: 1px solid; font-weight: bold;color: red; padding: 25px ; font-size: 18px;">Sorry,
-                        the provided
-                        URL is not a valid YouTube video link.</p>
-                    <div style="margin-top: 12px;">
-                        <a href="/youtubetomp3" class="submit-btn">Go
-                            Back</a>
-                    </div>
-                    <% } %>
-
-        </form>
-
-    </section>
-    <section class="section-container online-youtube mx">
-        <p class="py-3">Youtube to mp3 became very popular in the field of YouTube to mp3 conversion. the
-            most trusted tool for all worldwide users.</P>
-        <P class="py-3">
-            Client satisfaction is our top priority. That is why YouTube to mp3 gives the best
-            high-quality conversions that keep the best sound quality. youtube to mp3 is easy to
-            understand and use.
-        </p>
-        <p class="py-3">Youtube to mp3 is a fully functional tool accessible from any web browser. This
-            platform is on the web, so you don't have to sign up either. youtube to mp3 stands for
-            efficiency, quality, and ease of use. We continue to give the best experience.</p>
-    </section>
-    <!------------------------------------------------------ footer---------------------------------------------------- -->
-    <footer class="footer-bg mt-16">
-        <div class="footer ">
-            <div class="section-container row align-item-center justify-content-center">
-                <a class="w-5 w-md-3 w-sm-1" href="/">Home</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/privacy">Privacy Policy</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/termsofservice">Terms of
-                    service</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/dmca">DMCA</a>
-                <a class="w-5 w-md-3 w-sm-1" href="/contact">Contact Us</a>
+                <p>© 2023 Youtube Video Downloader</p>
             </div>
-            <p>© 2023 Youtube Video Downloader</p>
-        </div>
-    </footer>
-    <script>
-        // JavaScript to handle the loader and countdown
-        document.addEventListener('DOMContentLoaded', () => {
-            const loader = document.getElementById('loader');
-            const loaderbox = document.getElementById('loaderbox');
-            const countdown = document.getElementById('countdown');
-            const pleaseWait = document.getElementById('pleaseWait');
-            const videoFrame = document.getElementById('videoFrame');
+        </footer>
+        <script>
+            // JavaScript to handle the loader and countdown
+            document.addEventListener('DOMContentLoaded', () => {
+                const loader = document.getElementById('loader');
+                const loaderbox = document.getElementById('loaderbox');
+                const countdown = document.getElementById('countdown');
+                const pleaseWait = document.getElementById('pleaseWait');
+                const videoFrame = document.getElementById('videoFrame');
 
-            // Show the loader initially
-            loader.style.display = 'block';
+                // Show the loader initially
+                loader.style.display = 'block';
 
-            // Set a timeout to hide the loader and display the iframe after 10 seconds
-            let secondsLeft = 10;
-            countdown.innerText = secondsLeft + " " + "seconds...";
-
-            const countdownInterval = setInterval(() => {
-                secondsLeft -= 1;
+                // Set a timeout to hide the loader and display the iframe after 10 seconds
+                let secondsLeft = 10;
                 countdown.innerText = secondsLeft + " " + "seconds...";
 
-                if (secondsLeft === 0) {
-                    loader.style.display = 'none';
-                    countdown.style.display = 'none';
-                    loaderbox.style.display = 'none';
-                    pleaseWait.style.display = 'none';
-                    videoFrame.style.display = 'block';
-                    clearInterval(countdownInterval);
+                const countdownInterval = setInterval(() => {
+                    secondsLeft -= 1;
+                    countdown.innerText = secondsLeft + " " + "seconds...";
+
+                    if (secondsLeft === 0) {
+                        loader.style.display = 'none';
+                        countdown.style.display = 'none';
+                        loaderbox.style.display = 'none';
+                        pleaseWait.style.display = 'none';
+                        videoFrame.style.display = 'block';
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+            });
+
+
+        </script>
+        <script>
+            const form = document.getElementById('form');
+
+            const audio = document.getElementById("mp3Button")
+            const video = document.getElementById("mp4Button")
+            const anchor = document.createElement("a")
+
+            audio.addEventListener('click', async function () {
+                event.preventDefault();
+                const url = form.url.value;
+                // loadingDiv.style.display = "block";
+                try {
+                    const response = await fetch(`/mp3?url=${url}`);
+                    const data = await response.json();
+                    anchor.href = data;
+                    anchor.style.display = 'none';
+                    document.body.appendChild(anchor);
+                    anchor.click();
+                    document.body.removeChild(a);
+
+                } catch (err) {
+                    // alert("Error occurred during download");
+                    // loadingDiv.style.display = "none";
                 }
-            }, 1000);
-        });
+            });
 
 
-    </script>
-    <script>
-        const form = document.getElementById('form');
-
-        const audio = document.getElementById("mp3Button")
-        const video = document.getElementById("mp4Button")
-        const anchor = document.createElement("a")
-
-        audio.addEventListener('click', async function () {
-            event.preventDefault();
-            const url = form.url.value;
-            // loadingDiv.style.display = "block";
-            try {
-                const response = await fetch(`/mp3?url=${url}`);
-                const data = await response.json();
-                anchor.href = data;
-                anchor.style.display = 'none';
-                document.body.appendChild(anchor);
-                anchor.click();
-                document.body.removeChild(a);
-
-            } catch (err) {
-                // alert("Error occurred during download");
-                // loadingDiv.style.display = "none";
-            }
-        });
-
-
-        audio.addEventListener('click', function () {
-            const newSiteURL = 'https://letrasbonita.com/';
-            window.open(newSiteURL, '_blank');
-        });
-        video.addEventListener('click', function () {
-            form.action = "/downloadVideo"
-            const newSiteURL = 'https://letrasbonita.com/';
-            window.open(newSiteURL, '_blank');
-        });
-    </script>
+            audio.addEventListener('click', function () {
+                const newSiteURL = 'https://letrasbonita.com/';
+                window.open(newSiteURL, '_blank');
+            });
+            video.addEventListener('click', function () {
+                form.action = "/downloadVideo"
+                const newSiteURL = 'https://letrasbonita.com/';
+                window.open(newSiteURL, '_blank');
+            });
+        </script>
 
 </body>
 
