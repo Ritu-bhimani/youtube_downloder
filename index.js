@@ -121,7 +121,10 @@ app.get("/downloadVideo", async (req, res) => {
 
     const info = await ytdl.getInfo(videoUrl);
 
-    const format = ytdl.chooseFormat(info.formats, { quality: "highest" });
+    const format = ytdl.chooseFormat(info.formats, {
+      quality: "highest",
+      filter: "videoandaudio",
+    });
 
     if (format) {
       const sanitizedFilename = sanitize(info.videoDetails.title);
