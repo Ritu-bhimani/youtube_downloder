@@ -13,6 +13,7 @@ app.use(express.static("public"));
 
 // Set up EJS as the view engine
 app.set("view engine", "ejs");
+app.use('/images', express.static('views/images'));
 
 //======================================= Header Routes =======================================
 app.get("/", (req, res) => {
